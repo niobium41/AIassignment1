@@ -10,15 +10,15 @@ Search algorithms in openFrameworks.
 
 # Use Instructions
 
-m - generate maze
-r - generate rooms
-o - generate obstacles
-j - generate jail
-
-d - perform depth first search
-b - perform breadth first search
-g - perform greedy search
-a - perform A* search
-
-t - toggle results
-q - quit
+m - generate maze \n
+r - generate rooms\n
+o - generate obstacles\n
+j - generate jail\n
+\n
+d - perform depth first search\n
+b - perform breadth first search\n
+g - perform greedy search\n
+a - perform A* search\n
+\n
+t - toggle results\n
+q - quit\n
