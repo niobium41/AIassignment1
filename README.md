@@ -5,4 +5,4 @@ Search algorithms in openFrameworks
 2. Put in the myApps folder
 3. Open project
 4. ...
-5. profit?
+5. gay?
