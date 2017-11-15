@@ -20,8 +20,10 @@
 #define GRID_ELEMENT_WIDTH  ((float)WINDOW_WIDTH  / GRID_SIZE)
 #define GRID_ELEMENT_HEIGHT ((float)WINDOW_HEIGHT / GRID_SIZE)
 
-#define ROOT				&grid[0][0]
+// Set pointer to the root element
+#define ROOT				&grid[0][0] 
 
-#define N_SEARCHES			(int)4	
+// Set the number of search methods
+#define N_SEARCHES			4	
 
 #endif /* config_h */

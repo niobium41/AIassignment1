@@ -17,15 +17,16 @@
 #include "Direction.hpp"
 
 Grid::Grid() {
-	toggleResults = false;
+	toggleResults = false; // Don't show the result numbers by default
 
+	// Assign names to search results and initial values
 	for(int search = 0; search < N_SEARCHES; search++) {
 		searchResults[search].name		   = names[search];
 		searchResults[search].visitedNodes = NULL;
 		searchResults[search].shortestPath = NULL;
 	}
 
-    // set positions and neighbours of all elements
+    // Set positions and neighbours of all elements
     for(int y = 0; y < GRID_SIZE; y++) {
         for(int x = 0; x < GRID_SIZE; x++) {
             grid[x][y].x = x;
@@ -40,7 +41,7 @@ Grid::Grid() {
 }
 
 void Grid::reset() {
-    // reset all elements
+    // Reset all elements
     for(int y = 0; y < GRID_SIZE; y++) {
         for(int x = 0; x < GRID_SIZE; x++) {
             grid[x][y].reset();
@@ -49,7 +50,7 @@ void Grid::reset() {
 }
 
 void Grid::resetVisited() {
-	// reset all elements' visited state
+	// Reset all elements' visited state
 	for (int y = 0; y < GRID_SIZE; y++) {
 		for (int x = 0; x < GRID_SIZE; x++) {
 			grid[x][y].visited = false;
@@ -59,13 +60,14 @@ void Grid::resetVisited() {
 
 
 void Grid::draw() {
-    // draw all elements
+    // Draw all elements
     for(int y = 0; y < GRID_SIZE; y++) {
         for(int x = 0; x < GRID_SIZE; x++) {
             grid[x][y].draw();
         }
     }
-	//show results if desired
+	
+	// Show results if desired
 	if (toggleResults) showResults();
 }
 
@@ -155,13 +157,15 @@ void Grid::drawArc(int x_center, int y_center, double radius, double first_alpha
 }
 
 void Grid::setGoal() {
-	//set a goal for the search algorithms
+	// Set a random goal for the search algorithms
 	goal = &grid[rand() % GRID_SIZE][rand() % GRID_SIZE];
-	goal->marked = true;
-}
+
+	// Make sure the goal is marked on the grid
+	goal->marked = true; 
+} 
 
 void Grid::showResults() {
-	//display the search results of all the search algorithms
+	// Display the search results of all the search algorithms
 	for (int search = 0; search < N_SEARCHES; search++) {
 		results result = searchResults[search];
 		

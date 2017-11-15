@@ -14,7 +14,7 @@
 #include "constants.h"
 
 GridElement::GridElement() {
-    // reset all neighbours
+    // Reset all neighbours
     for(int direction = 0; direction < N_DIRECTIONS; direction++) {
         neighbours[direction] = NULL;
     }
@@ -87,16 +87,21 @@ void GridElement::setWall(Direction direction, bool is_solid) {
 }
 
 GridElement* GridElement::randomUnvisitedNeighbour() {
-	int found[4] = { 0,0,0,0 };
+	// Returns a pointer to a random unvisited neighbour or NULL if all are visited
 
+	int found[4] = { 0,0,0,0 }; // To keep track of checked neighbours
+
+	// Loop until each neighbour has been checked, or an unvisited neighbour has been found 
 	while (found[0]+found[1]+found[2]+found[3] < 4) {
-		int direction = rand() % 4;
+		int direction = rand() % 4; // Choose a random direction to check
 		
-		found[direction] = 1;
+		found[direction] = 1; // Set this direction to checked
+
+		// If this neighbour is accessible and unvisited, return it
 		if (neighbours[direction]!=NULL && !walls[direction] && !neighbours[direction]->visited) {
 			return neighbours[direction];
 		}
 	}
 
-	return NULL;
+	return NULL; // Return NULL if no univisted neighbour has been found
 }

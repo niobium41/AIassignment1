@@ -2,6 +2,7 @@
   GridAStarSearch.cpp
   GridBreadthFirstSearch.cpp
   GridDepthFirstSearch.cpp
+  GridElement.cpp
   GridGreedySearch.cpp
   GridJailGenerator.cpp
   GridMazeGenerator.cpp

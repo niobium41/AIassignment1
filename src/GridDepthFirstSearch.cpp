@@ -3,7 +3,7 @@
 //  SearchStragies
 //
 //  Created by David Stritzl on 08/11/2016.
-//
+//	Adapted by Laura Beunk on 15/11/2017.
 //
 
 #include <cstdlib>
@@ -14,49 +14,60 @@
 
 
 void Grid::depthFirstSearch() {
-	int search = 0; //index in the array of searches (to display results)
+	int search = 0; // Index in the array of searches (to display results)
 
-	std::stack<GridElement *> stack;
-	GridElement* currentNode = ROOT;
+	std::stack<GridElement *> stack; // Create a stack
+	GridElement* currentNode = ROOT; // Make the first node the root
 
 	float hue = 0;
-	float colorIncrement = (float)255.0 / ((float)GRID_SIZE*(float)GRID_SIZE); //map the amount of nodes to hue
-	int visitedNodes = 0;
+	float colorIncrement = (float)255.0 / ((float)GRID_SIZE*(float)GRID_SIZE); // Map the amount of nodes to hue
 	
-	resetVisited(); //reset the visited nodes at the start of every search
+	int visitedNodes = 0; // Keep track of the amount of visited nodes
+	
+	resetVisited(); // Reset the visited nodes at the start of every search
 
+	// Loop when the stack is not empty
 	do  {
 
+		// Put the current node on the stack
 		stack.push(currentNode);
 		
+		// Check if the current node is visited, if not change its status and color
 		if (!currentNode->visited) { 
 
 			currentNode->visitedColor.setHsb(hue, 255, 200); 
 
-			// if the hue is past 255 start at 0 again, else increment the hue;
+			// If the hue is past 255 start at 0 again, else increment the hue;
 			hue = (hue > 255) ? 0 : hue + colorIncrement;
 
 			currentNode->visited = true;
-			visitedNodes++;
+			visitedNodes++; // Another node visited
 		}
 		
+		// Check if the goal has been reached
 		if (currentNode == goal) {
+
+			// Save the amount of nodes visited and stack size (path length)
 			searchResults[search].visitedNodes = visitedNodes;
 			searchResults[search].shortestPath = stack.size();
-			break; //we're done since we've found the goal
+
+			break; // We're done since we've found the goal
 
 		} else {
 
-			//the next node will be a random unvisited neighbour, or NULL
+			// If the goal has not been reached, the next node will be a random unvisited neighbour, or NULL
 			GridElement* next = currentNode->randomUnvisitedNeighbour();
 
-			if (next != NULL) {
+			if (next != NULL) { 
+				// If we found an unvisted neighbour, make it the current node
 				currentNode = next;
 			} else {
-				//Go back in the stack if no unvisited neighbours
+				// Go back in the stack if no unvisited neighbours by removing the current node from the stack
 				stack.pop();
+
+				// Make the top node the current node and pop it since push at the start of loop
 				currentNode = stack.top();
-				stack.pop(); //pop current node, since push at the start of loop
+				stack.pop(); 
 			}
 		}
 

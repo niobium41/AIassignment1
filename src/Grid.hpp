@@ -45,14 +45,19 @@ public:
 	GridElement* goal;
 	void setGoal();
 	
+	// Struct to store results
 	struct results {
 		string name;
 		int visitedNodes;
 		int shortestPath;
 	};
 
+	// Array of structs for each search algorithm
 	results searchResults[N_SEARCHES];
+
+	// Names of search algorithms to display with results
 	string names[N_SEARCHES]= { "Depth first", "Breadth first", "Greedy", "A*" };
+	
 	void showResults();
 
 	bool toggleResults;
