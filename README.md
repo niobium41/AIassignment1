@@ -1,5 +1,5 @@
 # AIassignment1
-Search algorithms in openFrameworks.
+Search algorithms in openFrameworks. Assignment for AI class in Creative Technology @ University of Twente. Based on code by David Stritzl.
 
 # Download instructions
 1. Download/clone
