@@ -18,12 +18,13 @@
 
 Grid::Grid() {
 	toggleResults = false; // Don't show the result numbers by default
-
+	real = false;
 	// Assign names to search results and initial values
 	for(int search = 0; search < N_SEARCHES; search++) {
 		searchResults[search].name		   = names[search];
 		searchResults[search].visitedNodes = NULL;
 		searchResults[search].shortestPath = NULL;
+		searchResults[search].goalReached = false;
 	}
 
     // Set positions and neighbours of all elements
@@ -47,6 +48,14 @@ void Grid::reset() {
             grid[x][y].reset();
         }
     }
+
+	// Reset scores
+	for (int search = 0; search < N_SEARCHES; search++) {
+		searchResults[search].visitedNodes = NULL;
+		searchResults[search].shortestPath = NULL;
+		searchResults[search].goalReached = false;
+	}
+
 }
 
 void Grid::resetVisited() {
@@ -172,7 +181,7 @@ void Grid::showResults() {
 		ofSetColor(0, 100);
 		ofDrawRectangle(ofGetWidth() - 180, 10+search*90, 170, 80);
 		
-		ofSetColor(255);
+		ofSetColor(result.goalReached ? ofColor(0,255,0):ofColor(255,0,0));
 		ofDrawBitmapString(result.name,			ofGetWidth() - 170,	30 + search * 90);
 
 		ofDrawBitmapString("Visited nodes: ",	ofGetWidth() - 170, 50 + search * 90);

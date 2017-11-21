@@ -21,7 +21,7 @@
 class Grid {
 public:
     Grid();
-    
+	bool real;
     void reset();
 	void resetVisited();
     
@@ -36,6 +36,18 @@ public:
     void generateJail();
     
     void depthFirstSearch();
+	void depthFirstSearchInit();
+	void depthFirstSearchReal();
+	struct dfs {
+		int search;
+		std::stack<GridElement *> stack;
+		GridElement* currentNode;
+		float hue;
+		float colorIncrement;
+		int visitedNodes;
+	};
+	dfs dfs;
+
     void breadthFirstSearch();
     void greedySearch();
     void aStarSearch();
@@ -50,6 +62,7 @@ public:
 		string name;
 		int visitedNodes;
 		int shortestPath;
+		bool goalReached;
 	};
 
 	// Array of structs for each search algorithm

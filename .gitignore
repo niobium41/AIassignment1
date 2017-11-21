@@ -1,2 +1,8 @@
-AI_assignment1.*
+
+AI_assignment1.sln
+AI_assignment1.VC.db
+AI_assignment1.vcxproj
+AI_assignment1.vcxproj.filters
+AI_assignment1.vcxproj.user
 ./obj
+./.vs

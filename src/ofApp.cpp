@@ -1,9 +1,10 @@
 #include "ofApp.h"
 
+
 //--------------------------------------------------------------
 void ofApp::setup() {
     ofBackground(20, 20, 20);
-    
+	
     // init random generator
     std::srand((unsigned int)std::time(0));
     grid.generateMaze();
@@ -16,6 +17,12 @@ void ofApp::update() {
 
 //--------------------------------------------------------------
 void ofApp::draw() {
+	if (grid.real) {
+		switch (lastKeyPressed) {
+			case 'd':
+				grid.depthFirstSearch();
+		}
+	}
     grid.draw();
 }
 
@@ -26,7 +33,10 @@ void ofApp::keyPressed(int key) {
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key) {
+	lastKeyPressed = key;
+	std::cout << key;
     switch(key) {
+		
         case 'm':
             grid.reset();
             grid.generateMaze();
@@ -44,7 +54,10 @@ void ofApp::keyReleased(int key) {
             grid.generateJail();
             break;
         case 'd':
-            grid.depthFirstSearch();
+            grid.depthFirstSearchInit();
+			if (!grid.real) {
+				grid.depthFirstSearch();
+			}
             break;
         case 'b':
             grid.breadthFirstSearch();
@@ -59,6 +72,10 @@ void ofApp::keyReleased(int key) {
             ofExit();
 		case 't':
 			grid.toggleResults = !grid.toggleResults;
+			break;
+		case 'f': //toggle fake time
+			//grid.depthFirstSearchInit();
+			grid.real = true;
     }
 }
 

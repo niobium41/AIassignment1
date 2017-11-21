@@ -22,7 +22,6 @@
 
 // Set pointer to the root element
 #define ROOT				&grid[0][0] 
-
 // Set the number of search methods
 #define N_SEARCHES			4	
 
