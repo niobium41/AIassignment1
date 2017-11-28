@@ -37,8 +37,8 @@ public:
     
     void depthFirstSearch();
 	void depthFirstSearchInit();
-	void depthFirstSearchReal();
-	struct dfs {
+	
+	struct stackSearch {
 		int search;
 		std::stack<GridElement *> stack;
 		GridElement* currentNode;
@@ -46,9 +46,20 @@ public:
 		float colorIncrement;
 		int visitedNodes;
 	};
-	dfs dfs;
+	stackSearch dfs;
+
+	struct queueSearch {
+		int search;
+		std::queue<GridElement *> queue;
+		GridElement* currentNode;
+		float hue;
+		float colorIncrement;
+		int visitedNodes;
+	};
+	queueSearch bfs;
 
     void breadthFirstSearch();
+	void breadthFirstSearchInit();
     void greedySearch();
     void aStarSearch();
     

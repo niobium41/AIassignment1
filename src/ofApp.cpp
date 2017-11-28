@@ -21,6 +21,10 @@ void ofApp::draw() {
 		switch (lastKeyPressed) {
 			case 'd':
 				grid.depthFirstSearch();
+				break;
+			case 'b':
+				grid.breadthFirstSearch();
+				break;
 		}
 	}
     grid.draw();
@@ -55,13 +59,13 @@ void ofApp::keyReleased(int key) {
             break;
         case 'd':
             grid.depthFirstSearchInit();
-			if (!grid.real) {
-				grid.depthFirstSearch();
-			}
+			grid.depthFirstSearch();
             break;
         case 'b':
-            grid.breadthFirstSearch();
-            break;
+			grid.breadthFirstSearchInit();
+			grid.breadthFirstSearch();
+	
+			break;
         case 'g':
             grid.greedySearch();
             break;
