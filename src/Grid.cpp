@@ -63,6 +63,7 @@ void Grid::resetVisited() {
 	for (int y = 0; y < GRID_SIZE; y++) {
 		for (int x = 0; x < GRID_SIZE; x++) {
 			grid[x][y].visited = false;
+			grid[x][y].isPath = false;
 		}
 	}
 }

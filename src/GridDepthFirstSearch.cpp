@@ -16,8 +16,7 @@
 
 void Grid::depthFirstSearchInit() {
 	dfs.search = 0; // Index in the array of searches (to display results)
-
-	
+	dfs.level = 0;
 	dfs.currentNode = ROOT; // Make the first node the root
 
 	dfs.hue = 0;
@@ -50,7 +49,12 @@ void Grid::depthFirstSearch() {
 
 		// Check if the goal has been reached
 		if (dfs.currentNode == goal) {
-
+			dfs.currentNode->isPath = true;
+			while (dfs.currentNode != ROOT) {
+				dfs.currentNode = dfs.currentNode->parent;
+				dfs.currentNode->isPath = true;
+				dfs.level++;
+			}
 			// Save the amount of nodes visited and stack size (path length)
 			searchResults[dfs.search].visitedNodes = dfs.visitedNodes;
 			searchResults[dfs.search].shortestPath = dfs.stack.size();
@@ -66,6 +70,7 @@ void Grid::depthFirstSearch() {
 
 			if (next != NULL) {
 				// If we found an unvisted neighbour, make it the current node
+				next->parent = dfs.currentNode;
 				dfs.currentNode = next;
 			}
 			else {

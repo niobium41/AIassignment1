@@ -39,6 +39,7 @@ public:
 	void depthFirstSearchInit();
 	
 	struct stackSearch {
+		int level;
 		int search;
 		std::stack<GridElement *> stack;
 		GridElement* currentNode;
@@ -55,6 +56,7 @@ public:
 		float hue;
 		float colorIncrement;
 		int visitedNodes;
+		int level;
 	};
 	queueSearch bfs;
 

@@ -29,9 +29,9 @@ void GridElement::reset() {
     for(int direction = 0; direction < N_DIRECTIONS; direction++) {
         walls[direction] = true;
     }
-    
+	isPath = false;
     visited = false;
-    marked = false;
+	marked = false;
     parent = NULL;
     length_of_path = -1;
     score = 0;
@@ -49,7 +49,10 @@ void GridElement::draw() {
         ofSetColor(255, 255, 255);
         ofDrawEllipse((x + 0.5) * GRID_ELEMENT_WIDTH, (y + 0.5) * GRID_ELEMENT_HEIGHT, GRID_ELEMENT_WIDTH * 0.5, GRID_ELEMENT_HEIGHT * 0.5);
     }
-    
+	if (isPath) {
+		ofSetColor(255, 255, 255,70);
+		ofDrawRectangle((x) * GRID_ELEMENT_WIDTH, (y) * GRID_ELEMENT_HEIGHT, GRID_ELEMENT_WIDTH , GRID_ELEMENT_HEIGHT );
+	}
     // draw all walls
     for(int direction = 0; direction < N_DIRECTIONS; direction++) {
         if(walls[direction]) {

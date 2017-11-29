@@ -31,7 +31,8 @@ public:
     // variables for maze generation and path finding
     bool visited;
     bool marked;
-    
+	bool isPath;
+
     GridElement *parent;
     int length_of_path;
     int score;

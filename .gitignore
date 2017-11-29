@@ -6,3 +6,6 @@ AI_assignment1.vcxproj.filters
 AI_assignment1.vcxproj.user
 ./obj
 ./.vs
+./bin
+addons.make
+icon.rc
